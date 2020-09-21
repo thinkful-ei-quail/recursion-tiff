@@ -76,3 +76,25 @@ function splitter(str, limit) {
   return splitter(arr)
 }
 console.log(splitter('11/23/1995', '/'))
+
+// Fibonacci
+// write a recursive function that prints the Fibonacci sequence of a given number
+// ea number is the sum of the 2 preceding numbers
+// 1 1 2 3 5 8 13
+
+function fibonacci(n) {
+  if (n <= 1) return n
+    else return fibonacci(n - 1) + fibonacci(n-2)
+}
+console.log(fibonacci(6))
+
+// Factorial
+// write a recursive function that finds the factorial of a given number
+// factorial of 5 === 5 * 4 * 3 * 2 * 1 = 120 
+function factorial(n) {
+  if (n <= 1) return n
+    else return factorial(n - 1) * n
+}
+console.log(factorial(5))
+
+// Find a way out the maze
