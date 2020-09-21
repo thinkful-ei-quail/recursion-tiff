@@ -98,3 +98,23 @@ function factorial(n) {
 console.log(factorial(5))
 
 // Find a way out the maze
+    // let mySmallMaze = [
+        //    0    1    2            
+        //0 [' ', ' ', ' '],
+        //1 [' ', '*', ' '],
+        //2 [' ', ' ', 'e']
+    // ];
+    // 
+    // let maze = [
+        //    0    1    2    3    4    5    6
+        //0 [' ', ' ', ' ', '*', ' ', ' ', ' '],
+        //1 ['*', '*', ' ', '*', ' ', '*', ' '],
+        //2 [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        //3 [' ', '*', '*', '*', '*', '*', ' '],
+        //4 [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+    // ];
+// a possible exit path can be RRDDLLDDRRRRRR
+// L  R  U  D
+function maze(n) {
+  if ()
+}
