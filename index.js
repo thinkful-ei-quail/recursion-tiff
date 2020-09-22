@@ -115,6 +115,55 @@ console.log(factorial(5))
     // ];
 // a possible exit path can be RRDDLLDDRRRRRR
 // L  R  U  D
-function maze(n) {
-  if ()
-}
+
+    let maze = [
+        [' ', ' ', ' ', '*', ' ', ' ', ' '],
+        ['*', '*', ' ', '*', ' ', '*', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', '*', '*', '*', '*', '*', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+    ];
+
+function mazeRunner(x, y, path, maze) {
+    if(x < 0 || y < 0 || y >= maze.length || x >= maze[y].length || maze[y][x] === '*') {
+      return null
+    }
+    if(maze[y][x] === 'e') {
+      return path
+    }
+  
+    maze = maze.map(row => [...row])
+    maze[y][x] = '*'
+  
+    return mazeRunner(x + 1, y, path + 'R', maze) 
+      || mazeRunner(x - 1, y, path + 'L', maze) 
+      || mazeRunner(x, y + 1, path + 'D', maze) 
+      || mazeRunner(x, y - 1, path + 'U', maze)
+  
+  }
+  
+  console.log(mazeRunner(0, 0, '', maze))
+  
+  //All maze paths
+  
+  function findAllPaths(x, y, path, maze) {
+    if(x < 0 || y < 0 || y >= maze.length || x >= maze[y].length || maze[y][x] === '*') {
+      return []
+    }
+    
+    if(maze[y][x] === 'e'){
+      return [path]
+    }
+    maze = maze.map(row => [...row])
+    
+    maze[y][x] = '*'
+    return [
+      ...findAllPaths(x + 1, y, path + 'R', maze),
+      ...findAllPaths(x - 1, y, path + 'L', maze), 
+      ...findAllPaths(x, y - 1, path + 'U', maze), 
+      ...findAllPaths(x, y + 1, path + 'D', maze)
+    ]
+  
+  }
+  
+  console.log(findAllPaths(0, 0, '', maze))
