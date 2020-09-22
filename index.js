@@ -167,3 +167,139 @@ function mazeRunner(x, y, path, maze) {
   }
   
   console.log(findAllPaths(0, 0, '', maze))
+
+  // Anagrams
+// An anagram is any word or phrase that uses the letters of a given ("subject") word or phrase in another, rearranged order.
+// Write a function that creates an anagram list, listing all the rearrangements of a given word.
+// For example, if the user types "east", the program should list all 24 permutations, including "eats", "etas", "teas", and non-words like "tsae".
+// Hint: For your algorithm, you might want to think about a prefix and use that to create the new words.
+// For example, given "east", use "e" as a prefix and place it in front of all 6 permutations of "ast" — "ast", "ats", "sat", "sta", "tas", and "tsa".
+// This will give you the words "east", "eats", "esat", "esta", "etas", and "etsa". Continue this way until you find all the anagrams for "east".
+// Then you can use "a" as a prefix and permute the remaining words "est". For "east", there should be 24 words.
+
+function makeAnagrams(str) {
+    if(str.length < 2) {
+      return [str]
+    }
+  
+    const prefixArr = str.split('')
+    return [...new Set(prefixArr.reduce((a, c, i) => {
+      return [...a, ...makeAnagrams(prefixArr.slice(0, i).join('') + prefixArr.slice(i + 1).join('')).map(suffix => c + suffix)]
+    }, []))]
+  }
+  
+  console.log(makeAnagrams('bee'))
+
+  // 11. Organization Chart
+ // Write a recursive function that prints the following organization chart.
+ // Your output should be as shown below with proper indentation to show the hierarchy.
+ // You may store the org chart in an object and send that as an input to your program.
+  
+  const orgChart = {
+    name: 'Zuckerberg',
+    directReports: [
+      {
+        name: 'Schroepfer',
+        directReports: [
+          {
+            name: 'Bowsworth',
+            directReports: [
+              {name: 'Steve',directReports: []},
+              {name: 'Kyle',directReports: []},
+              {name: 'Andra',directReports: []},
+            ]
+          },
+          {
+            name: 'Zhao',
+            directReports: [
+              {name: 'Richie', directReports: []},
+              {name: 'Sofia', directReports: []},
+              {name: 'Jen',directReports: []},
+            ]
+          }
+        ],
+      },
+      {
+        name: 'Schrage',
+        directReports: [
+          {
+            name: 'VanDyck',
+            directReports: [
+              {name: 'Sabrina', directReports: []},
+              {name: 'Michelle', directReports: []},
+              {name: 'Josh', directReports: []}
+            ]
+          },
+          {
+            name: 'Swain',
+            directReports: [
+              {name: 'Blanch', directReports: []},
+              {name: 'Tom', directReports: []},
+              {name: 'Joe', directReports: []}
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Sandberg',
+        directReports: [
+          {
+            name: 'Goler',
+            directReports: [
+              {name: 'Eddie', directReports: []},
+              {name: 'Julie', directReports: []},
+              {name: 'Annie', directReports: []}
+            ]
+          },
+          {
+            name: 'Hernandez',
+            directReports: [
+              {name: 'Rowi', directReports: []},
+              {name: 'Inga', directReports: []},
+              {name: 'Morgan', directReports: []}
+            ]
+          },
+          {
+            name: 'Moissinac',
+            directReports: [
+              {name: 'Amy', directReports: []},
+              {name: 'Chuck', directReports: []},
+              {name: 'Vinni', directReports: []}
+            ]
+          },
+          {
+            name: 'Kelley',
+            directReports: [
+              {name: 'Eric', directReports: []},
+              {name: 'Ana', directReports: []},
+              {name: 'Wes', directReports: []}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
+  function printOrgChart(orgObj, indent = '') {
+    console.log(indent + orgObj.name)
+    indent += '\t'
+    orgObj.directReports.forEach(person => printOrgChart(person, indent))
+  }
+  
+  printOrgChart(orgChart)
+
+//  12. Binary Representation
+// Write a recursive function that prints out the binary representation of a given number.
+// For example, the program should take 3 as an input and print 11 as output, or 25 as an input and print 11001 as an output.
+// Note that the binary representation of 0 should be 0.
+  
+  function convertToBinary(num) {
+    num = num|0
+    if(num <= 1) {
+      return num.toString()
+    }
+    const lsb = (num % 2).toString()
+    return convertToBinary(num/2) + lsb
+  }
+  
+  console.log(convertToBinary(10))
